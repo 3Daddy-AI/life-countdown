@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人生のカウントダウン</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="setup-screen" class="screen">
+    <h1>人生のカウントダウン</h1>
+    <p class="subtitle">あなたの残り時間を可視化します</p>
+    <div class="form">
+      <label>生年月日
+        <input type="date" id="birthdate">
+      </label>
+      <label>性別
+        <select id="gender">
+          <option value="male">男性（平均寿命 81歳）</option>
+          <option value="female">女性（平均寿命 87歳）</option>
+        </select>
+      </label>
+      <button id="start-btn">カウントダウンを開始</button>
+    </div>
+  </div>
+
+  <div id="countdown-screen" class="screen hidden">
+    <h1>残りの人生</h1>
+
+    <div class="hourglass-container">
+      <svg id="hourglass" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
+        <!-- 外枠 -->
+        <polygon points="10,5 90,5 90,15 55,80 90,145 90,155 10,155 10,145 45,80 10,15" fill="none" stroke="#ccc" stroke-width="3"/>
+        <!-- 上の砂（残り時間） -->
+        <clipPath id="upper-clip">
+          <polygon points="12,7 88,7 88,14 54,78 46,78 12,14"/>
+        </clipPath>
+        <rect id="upper-sand" x="0" y="0" width="100" height="78" fill="#e8c96e" clip-path="url(#upper-clip)"/>
+        <!-- 下の砂（経過時間） -->
+        <clipPath id="lower-clip">
+          <polygon points="46,82 54,82 88,146 88,153 12,153 12,146"/>
+        </clipPath>
+        <rect id="lower-sand" x="0" y="82" width="100" height="80" fill="#c8a84b" clip-path="url(#lower-clip)"/>
+        <!-- 砂が落ちる粒 -->
+        <circle id="sand-drop" cx="50" cy="80" r="1.5" fill="#e8c96e" opacity="0"/>
+      </svg>
+    </div>
+
+    <div class="countdown-grid">
+      <div class="unit">
+        <span id="years" class="number">0</span>
+        <span class="label">年</span>
+      </div>
+      <div class="unit">
+        <span id="days" class="number">0</span>
+        <span class="label">日</span>
+      </div>
+      <div class="unit">
+        <span id="hours" class="number">0</span>
+        <span class="label">時間</span>
+      </div>
+      <div class="unit">
+        <span id="minutes" class="number">0</span>
+        <span class="label">分</span>
+      </div>
+      <div class="unit">
+        <span id="seconds" class="number">0</span>
+        <span class="label">秒</span>
+      </div>
+    </div>
+
+    <p id="progress-text" class="progress-text"></p>
+    <button id="reset-btn">最初に戻る</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
