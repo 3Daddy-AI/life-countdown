@@ -1,18 +1,49 @@
 // 日本人の平均寿命（厚生労働省 2023年・男女合計）
 const LIFESPAN = 84.3;
 
-const setupScreen    = document.getElementById('setup-screen');
+// 和暦の元号と西暦の対応
+const ERA_OFFSET = {
+  reiwa:  2018,
+  heisei: 1988,
+  showa:  1925,
+  taisho: 1911,
+  meiji:  1867
+};
+
+const setupScreen     = document.getElementById('setup-screen');
 const countdownScreen = document.getElementById('countdown-screen');
-const startBtn       = document.getElementById('start-btn');
-const resetBtn       = document.getElementById('reset-btn');
+const startBtn        = document.getElementById('start-btn');
+const resetBtn        = document.getElementById('reset-btn');
 
 let intervalId = null;
 let dropAnimId = null;
+let currentMode = 'western';
+
+// 西暦・和暦トグル
+document.querySelectorAll('.era-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.era-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMode = btn.dataset.mode;
+    document.getElementById('western-input').classList.toggle('hidden', currentMode !== 'western');
+    document.getElementById('japanese-input').classList.toggle('hidden', currentMode !== 'japanese');
+  });
+});
 
 startBtn.addEventListener('click', () => {
-  const year  = parseInt(document.getElementById('birth-year').value);
-  const month = parseInt(document.getElementById('birth-month').value);
-  const day   = parseInt(document.getElementById('birth-day').value);
+  let year, month, day;
+
+  if (currentMode === 'western') {
+    year  = parseInt(document.getElementById('birth-year').value);
+    month = parseInt(document.getElementById('birth-month').value);
+    day   = parseInt(document.getElementById('birth-day').value);
+  } else {
+    const era    = document.getElementById('era-select').value;
+    const eraYear = parseInt(document.getElementById('era-year').value);
+    year  = ERA_OFFSET[era] + eraYear;
+    month = parseInt(document.getElementById('jp-birth-month').value);
+    day   = parseInt(document.getElementById('jp-birth-day').value);
+  }
 
   if (!year || !month || !day) {
     alert('生年月日をすべて入力してください');

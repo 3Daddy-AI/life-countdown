@@ -91,6 +91,58 @@ label {
 #birth-year  { width: 90px; }
 #birth-month { width: 60px; }
 #birth-day   { width: 60px; }
+#era-year    { width: 60px; }
+#jp-birth-month { width: 60px; }
+#jp-birth-day   { width: 60px; }
+
+/* 和暦セレクト */
+.date-inputs select {
+  background: #1a1a2e;
+  border: 1px solid #333;
+  color: #e0e0e0;
+  padding: 12px 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.date-inputs select:focus {
+  border-color: #e8c96e;
+}
+
+/* 西暦・和暦トグル */
+.era-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid #333;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.era-btn {
+  margin: 0;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #666;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.era-btn.active {
+  background: #e8c96e;
+  color: #0a0a0f;
+}
+
+.era-btn:hover:not(.active) {
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
 
 button {
   margin-top: 10px;

@@ -13,12 +13,36 @@
     <p class="subtitle">あなたの残り時間を可視化します</p>
     <div class="form">
       <label>生年月日</label>
-      <div class="date-inputs">
+
+      <div class="era-toggle">
+        <button type="button" class="era-btn active" data-mode="western">西暦</button>
+        <button type="button" class="era-btn" data-mode="japanese">和暦</button>
+      </div>
+
+      <!-- 西暦入力 -->
+      <div class="date-inputs" id="western-input">
         <input type="number" id="birth-year" placeholder="1990" min="1900" max="2099">
         <span>年</span>
         <input type="number" id="birth-month" placeholder="1" min="1" max="12">
         <span>月</span>
         <input type="number" id="birth-day" placeholder="1" min="1" max="31">
+        <span>日</span>
+      </div>
+
+      <!-- 和暦入力 -->
+      <div class="date-inputs hidden" id="japanese-input">
+        <select id="era-select">
+          <option value="reiwa">令和</option>
+          <option value="heisei">平成</option>
+          <option value="showa">昭和</option>
+          <option value="taisho">大正</option>
+          <option value="meiji">明治</option>
+        </select>
+        <input type="number" id="era-year" placeholder="1" min="1" max="99">
+        <span>年</span>
+        <input type="number" id="jp-birth-month" placeholder="1" min="1" max="12">
+        <span>月</span>
+        <input type="number" id="jp-birth-day" placeholder="1" min="1" max="31">
         <span>日</span>
       </div>
 <button id="start-btn">カウントダウンを開始</button>
