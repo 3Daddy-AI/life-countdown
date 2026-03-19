@@ -10,17 +10,25 @@ let intervalId = null;
 let dropAnimId = null;
 
 startBtn.addEventListener('click', () => {
-  const birthdate = document.getElementById('birthdate').value;
+  const year  = parseInt(document.getElementById('birth-year').value);
+  const month = parseInt(document.getElementById('birth-month').value);
+  const day   = parseInt(document.getElementById('birth-day').value);
 
-  if (!birthdate) {
-    alert('生年月日を入力してください');
+  if (!year || !month || !day) {
+    alert('生年月日をすべて入力してください');
+    return;
+  }
+
+  const birthdate = new Date(year, month - 1, day);
+  if (isNaN(birthdate.getTime())) {
+    alert('正しい日付を入力してください');
     return;
   }
 
   setupScreen.classList.add('hidden');
   countdownScreen.classList.remove('hidden');
 
-  startCountdown(new Date(birthdate), LIFESPAN);
+  startCountdown(birthdate, LIFESPAN);
   startSandDrop();
 });
 
