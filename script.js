@@ -1,8 +1,5 @@
-// 日本の平均寿命（厚生労働省 2023年）
-const LIFESPAN = {
-  male: 81.05,
-  female: 87.14
-};
+// 日本人の平均寿命（厚生労働省 2023年・男女合計）
+const LIFESPAN = 84.3;
 
 const setupScreen    = document.getElementById('setup-screen');
 const countdownScreen = document.getElementById('countdown-screen');
@@ -14,7 +11,6 @@ let dropAnimId = null;
 
 startBtn.addEventListener('click', () => {
   const birthdate = document.getElementById('birthdate').value;
-  const gender    = document.getElementById('gender').value;
 
   if (!birthdate) {
     alert('生年月日を入力してください');
@@ -24,7 +20,7 @@ startBtn.addEventListener('click', () => {
   setupScreen.classList.add('hidden');
   countdownScreen.classList.remove('hidden');
 
-  startCountdown(new Date(birthdate), LIFESPAN[gender]);
+  startCountdown(new Date(birthdate), LIFESPAN);
   startSandDrop();
 });
 
